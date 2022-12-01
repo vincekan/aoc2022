@@ -2,7 +2,8 @@
 Part 1
 Read through the file line by line.
 If value exists, add to running sum.
-If no value (a blank line) then append the running sum to a list of sums and reset the running sum.
+If line is just a newline then append the running sum to a list of sums and reset the running sum.
+List of sums corresponds to the total caloric load of each elf.
 '''
 
 sums = list()
@@ -22,7 +23,8 @@ print(answer1)
 
 '''
 Part 2
-Use python's max() function to find top value, then remove it from the list.
+Use max() function to find top value, then remove it from the list.
+Note that remove() only removes one item, even if there are duplicates. This is good.
 Do this three times. Still O(n).
 '''
 
