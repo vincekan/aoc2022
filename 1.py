@@ -9,7 +9,7 @@ List of sums corresponds to the total caloric load of each elf.
 sums = list()
 runningSum = 0
 
-with open ("1input.txt", "r") as myfile:
+with open("1input.txt", "r") as myfile:
     for line in myfile:
         if line == '\n':
             #skip
