@@ -15,8 +15,6 @@ All above O(n).
 # a0....b0........b1.a1
 # b0..a0..a1.........b1
 def isFullyContained(A, B):
-    a = list(map(int, A.split("-")))    # tricky - if this cast isn't performed then mistake due to str comparison!
-    b = list(map(int, B.split("-")))
     return (a[0] <= b[0] and b[1] <= a[1]) or (a[0] >= b[0] and b[1] >= a[1])
 
 # Checks if there is no overlap between A or B, if yes, returns True.
@@ -24,18 +22,21 @@ def isFullyContained(A, B):
 # a0....a1........b0.b1
 # b0..b1..a0.........a1
 def isNotOverlapping(A, B):
-    a = list(map(int, A.split("-")))
-    b = list(map(int, B.split("-")))
-    return a[1] < b[0] or b[1] < a[0]
+    return (a[1] < b[0]) or (b[1] < a[0])
 
-# Stream through and record rounds - O(n)
+# Stream through file and send off to comparators - O(n)
 total_lines = fully_contained = not_overlapping = 0
 with open("4input.txt", "r") as myfile:
     for line in myfile:
+        # Do these cleaning operations once here, instead of twice in each of the comparators
         items = line.strip().split(",")
-        if isFullyContained(items[0], items[1]):
+        a = list(map(int, items[0].split("-")))  # if this cast isn't performed then mistake due to str comparison!
+        b = list(map(int, items[1].split("-")))
+
+        # Send to comparators and log results
+        if isFullyContained(a, b):
             fully_contained += 1
-        if isNotOverlapping(items[0], items[1]):
+        if isNotOverlapping(a, b):
             not_overlapping += 1
         total_lines += 1
 
