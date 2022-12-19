@@ -8,12 +8,24 @@ and then find which dict k, v pair has v == 2.
 This needs to be done per half of the bag, to discount duplicates in the same half bag.
 '''
 
-# finds duplicates from input of two lists by converting them to sets
+
 def duplicate_finder(A, B):
+    '''
+    Finds duplicates from input of two lists by converting them to sets.
+
+    :param A: List 1
+    :param B: List 2
+    :return: Set of items in both A and B
+    '''
     return set(A).intersection(set(B))
 
-# finds priority of char input from a-z and A-Z
 def priority_finder(c):
+    '''
+    Finds priority of char input from Ordinality of a-z and A-Z
+
+    :param c: Char
+    :return: The priority value as an int from 1-52
+    '''
     if c.islower():
         return ord(c) - 96  # shifting ord to priority 1-26
     else:
