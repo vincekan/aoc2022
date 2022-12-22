@@ -1,4 +1,4 @@
-'''
+"""
 Part 1
 Stream through the file and get moves.
 
@@ -11,19 +11,20 @@ Check distance from T to see if a move is required.
 If yes, move T to the last position of H.
 
 At end of each move, record where the tail is in a dict for uniqueness.
+"""
 
-'''
 
 def nearby(h, t):
-    '''
+    """
     Function takes in the head and tail lists and checks if they are within 1 cell distance.
     Uses a one liner to determine if the x, y coordinates are within +/- 1 grid
 
     :param h: List of x, y coordinate of Head
     :param t: List of x, y coordinate of Tail
     :return: Boolean, True or False
-    '''
-    return h[0] in range(t[0]-1, t[0]+2) and h[1] in range(t[1]-1, t[1]+2)
+    """
+    return h[0] in range(t[0] - 1, t[0] + 2) and h[1] in range(t[1] - 1, t[1] + 2)
+
 
 # Stream through file
 with open("9input.txt", "r") as myfile:
@@ -59,7 +60,7 @@ for line in lines:
 # Keys are unique. Add 1 for [0, 0].
 print(len(tail_locs.keys()) + 1)
 
-'''
+"""
 Part 2
 Can't use the same 'last position' trick now that we have a big chain.
 
@@ -71,10 +72,11 @@ At each knot (10 now!), check:
 
 At end of each move, record where the tail is in a dict for uniqueness.
 
-'''
+"""
+
 
 def getMove(h, t):
-    '''
+    """
     Function takes in the head and tail lists and uses the delta in x, y coordinates
     to return a suitable move for the tail to catch up.
     As all moves are single steps, uses delta/abs(delta) to determine the correct vector in each axis.
@@ -82,16 +84,17 @@ def getMove(h, t):
     :param h: List of x, y coordinate of Head
     :param t: List of x, y coordinate of Tail
     :return: List of x, y coordinate of movement vector
-    '''
+    """
     dx = h[0] - t[0]
     dy = h[1] - t[1]
 
     if dx == 0:
-        return [0, int(dy/abs(dy))]
+        return [0, int(dy / abs(dy))]
     elif dy == 0:
-        return [int(dx/abs(dx)), 0]
+        return [int(dx / abs(dx)), 0]
     else:
-        return [int(dx/abs(dx)), int(dy/abs(dy))]
+        return [int(dx / abs(dx)), int(dy / abs(dy))]
+
 
 # Model the location of the 10 knots in x and y coordinates
 snake = [[0, 0] for _ in range(10)]
@@ -117,12 +120,12 @@ for line in lines:
         # Iterate through remaining knots in snake, indices 1 to 9
         for knot in range(1, 10):
             # Check if next knot needs to catch up
-            if nearby(snake[knot-1], snake[knot]):
+            if nearby(snake[knot - 1], snake[knot]):
                 # Do nothing, no need to update any further
                 break
             else:
                 # Get the move for the know to catch up and apply it
-                move = getMove(snake[knot-1], snake[knot])
+                move = getMove(snake[knot - 1], snake[knot])
                 snake[knot][0] += move[0]
                 snake[knot][1] += move[1]
 

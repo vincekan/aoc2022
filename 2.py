@@ -1,11 +1,11 @@
-'''
+"""
 Part 1
 Stream through the strategy guide and increment two counters:
     1. Counter for what you played (X, Y, Z)
     2. Counter for if you won or lost
 Use dictionary to keep tally and multiply through at the end.
 (instead of incrementing score - cleaner code).
-'''
+"""
 
 # Stream through and record rounds - O(n)
 round = {}
@@ -52,13 +52,13 @@ for k, v in round.items():
 print(f'Part 1: {score}')
 
 
-'''
+"""
 Part 2
 Basically just a new scoring system.
 X, Y, Z already tells you the outcome.
 A, B, C evaluated to tell yu what you played to achieve the outcome.
 Build a new key dict.
-'''
+"""
 
 # Build score key
 key2 = {}
